@@ -78,21 +78,21 @@ export const davRequest = async (params: {
   // debug('response xml:');
   // debug(resText);
   // debug(davResponse);
-  if (
-    !davResponse.ok ||
-    !davResponse.headers.get('content-type')?.includes('xml') ||
-    !parseOutgoing
-  ) {
-    return [
-      {
-        href: davResponse.url,
-        ok: davResponse.ok,
-        status: davResponse.status,
-        statusText: davResponse.statusText,
-        raw: resText,
-      },
-    ];
-  }
+  // if (
+  //   !davResponse.ok ||
+  //   !davResponse.headers.get('content-type')?.includes('xml') ||
+  //   !parseOutgoing
+  // ) {
+  //   return [
+  //     {
+  //       href: davResponse.url,
+  //       ok: davResponse.ok,
+  //       status: davResponse.status,
+  //       statusText: davResponse.statusText,
+  //       raw: resText,
+  //     },
+  //   ];
+  // }
 
   const result: any = convert.xml2js(resText, {
     compact: true,
