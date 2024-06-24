@@ -166,7 +166,6 @@ var requestHelpers = /*#__PURE__*/Object.freeze({
 
 const debug$5 = getLogger('tsdav:request');
 const davRequest = (params) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     const { url, init, convertIncoming = true, parseOutgoing = true } = params;
     const { headers = {}, body, namespace, method, attributes } = init;
     const xmlBody = convertIncoming
@@ -205,19 +204,21 @@ const davRequest = (params) => __awaiter(void 0, void 0, void 0, function* () {
     // debug('response xml:');
     // debug(resText);
     // debug(davResponse);
-    if (!davResponse.ok ||
-        !((_a = davResponse.headers.get('content-type')) === null || _a === void 0 ? void 0 : _a.includes('xml')) ||
-        !parseOutgoing) {
-        return [
-            {
-                href: davResponse.url,
-                ok: davResponse.ok,
-                status: davResponse.status,
-                statusText: davResponse.statusText,
-                raw: resText,
-            },
-        ];
-    }
+    // if (
+    //   !davResponse.ok ||
+    //   !davResponse.headers.get('content-type')?.includes('xml') ||
+    //   !parseOutgoing
+    // ) {
+    //   return [
+    //     {
+    //       href: davResponse.url,
+    //       ok: davResponse.ok,
+    //       status: davResponse.status,
+    //       statusText: davResponse.statusText,
+    //       raw: resText,
+    //     },
+    //   ];
+    // }
     const result = convert.xml2js(resText, {
         compact: true,
         trim: true,
